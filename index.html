@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <title>hello-wasm example</title>
+</head>
+<body>
+<script type="module">
+  import init, { greet } from './pkg/wasm_pg.js'
+
+  init()
+    .then(() => {
+      greet("Web Assembly!")
+    })
+</script>
+<div>
+    <span>Hello</span>
+</div>
+</body>
+</html>
