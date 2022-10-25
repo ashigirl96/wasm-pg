@@ -1,22 +1,33 @@
 import type { NextPage } from 'next'
-import init, { greet, foo } from "wasm-react";
-import {useEffect, useState} from "react";
-
+import init, { greet, add, arr_sum as arraySum } from 'wasm-react'
+import { useEffect, useState } from 'react'
 
 const Home: NextPage = () => {
-  const [res, setRes] = useState('')
+  const [res, setRes] = useState(() => <></>)
   useEffect(() => {
     init().then(() => {
-      const g = greet("WebAssembly")
-      console.log(`g ${g}`)
-      setRes(`${g} ${foo(1, 100)}`)
+      const greeting = greet('WebAssembly')
+      const x = add(99, 1)
+      const y = arraySum()
+      setRes(() => (
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100wv',
+            height: '100vh',
+          }}
+        >
+          <span>{greeting}</span>
+          <span>99 + 1 = ${x}</span>
+          <span>{y}</span>
+        </div>
+      ))
     })
   }, [setRes])
-  return (
-    <div>
-      {res}
-    </div>
-  )
+  return <div>{res}</div>
 }
 
 export default Home
