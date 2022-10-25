@@ -15,8 +15,15 @@ extern {
 }
 
 #[wasm_bindgen]
-pub fn greet(name: &str) {
+pub fn greet(name: &str) -> String {
     let mut arr = array![[1, 2, 3], [4, 5, 6]];
     let x: i32 = arr.sum();
-    alert(&format!("Hello, {} {}!", name, x));
+    let result = format!("Hello, {} {}!", name, x);
+    // alert(&result);
+    result
+}
+
+#[wasm_bindgen]
+pub fn foo(a: i32, b: i32) -> i32 {
+    a + b
 }
